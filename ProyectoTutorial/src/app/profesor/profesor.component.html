@@ -1,0 +1,48 @@
+
+<p>profesor works!</p>
+
+<button (click)="Mostrar()">
+  Mostrar lista de alumnos
+</button>
+
+<button (click)="OrdenarPuntos()">
+  Ordenar Puntos
+</button>
+<div>
+  <h2>
+    Lista de alumnos
+  </h2>
+  <ul *ngFor="let persona of lista">
+    <li *ngIf="persona.rol === 'Alumno'">
+      <div><span>Nombre: </span> {{ persona.nombre }}</div>
+      <div><span>Puntos: </span> {{ persona.puntos }}</div>
+      <button (click)="Incrementar(persona.nombre)">Añadir Punto</button>
+      <button (click)="Eliminar(persona.nombre)">Eliminar</button>
+    </li>
+  </ul>
+</div>
+
+<h2>Introducir un nuevo alumno</h2>
+  <form (ngSubmit)="Pon();">
+    <div>
+      <label>Nombre: </label>
+      <input type="text" name="nombre" placeholder="escribe el nombre" required [(ngModel)] = "nombre">
+    </div>
+    <div>
+        <label>Pass: </label>
+        <input type="text" name="pass" placeholder="escribe el pass" required [(ngModel)] = "pass">
+    </div>
+    <div>
+        <label>Rol: </label>
+        <select name="rol" required [(ngModel)] = "rol">
+          <option value="Alumno">Alumno</option>
+          <option value="Profesor">Profesor</option>
+        </select>
+    </div>
+    <div>
+      <label>Puntos iniciales: </label>
+      <input type="number" name="puntos" placeholder="puntos iniciales" required [(ngModel)] = "puntos">
+    </div>
+    <button>Crear un nuevo alumno</button>
+  </form>
+
