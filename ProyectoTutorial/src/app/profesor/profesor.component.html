@@ -1,26 +1,38 @@
 
 <p>profesor works!</p>
 
-<button (click)="Mostrar()">
+<button mat-raised-button color="primary" (click)="Mostrar()">
   Mostrar lista de alumnos
 </button>
-
-<button (click)="OrdenarPuntos()">
+<button mat-raised-button color="accent" (click)="OrdenarPuntos()">
   Ordenar Puntos
 </button>
-<div>
-  <h2>
-    Lista de alumnos
-  </h2>
-  <ul *ngFor="let persona of lista">
-    <li *ngIf="persona.rol === 'Alumno'">
-      <div><span>Nombre: </span> {{ persona.nombre }}</div>
-      <div><span>Puntos: </span> {{ persona.puntos }}</div>
-      <button (click)="Incrementar(persona.nombre)">Añadir Punto</button>
-      <button (click)="Eliminar(persona.nombre)">Eliminar</button>
-    </li>
-  </ul>
-</div>
+
+<h2>LISTA DE ALUMNOS</h2>
+
+<table mat-table [dataSource]="lista" class="mat-elevation-z8">
+  <ng-container matColumnDef="nombre">
+      <th mat-header-cell *matHeaderCellDef> Nombre </th>
+      <td mat-cell *matCellDef="let persona"><p *ngIf= "persona.rol === 'Alumno'"> {{persona.nombre}}</p> </td>
+  </ng-container>
+
+  <ng-container matColumnDef="puntos">
+      <th mat-header-cell *matHeaderCellDef> Puntos </th>
+      <td mat-cell *matCellDef="let persona"> <p *ngIf= "persona.rol === 'Alumno'"> {{persona.puntos}}</p></td>
+  </ng-container>
+
+  <ng-container matColumnDef="incrementar">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let persona"><button *ngIf= "persona.rol === 'Alumno'" (click)="Incrementar(persona.nombre)"><i class="material-icons green">add</i></button></td>
+  </ng-container>
+
+  <ng-container matColumnDef="eliminar">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let persona"><button *ngIf= "persona.rol === 'Alumno'" (click)="Eliminar(persona.nombre)"><i class="material-icons red">delete</i></button></td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
 
 <h2>Introducir un nuevo alumno</h2>
   <form (ngSubmit)="Pon();">

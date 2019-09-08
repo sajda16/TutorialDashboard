@@ -32,6 +32,7 @@ export class ListaService {
 
   OrdenarPuntos(): Persona[] {
     this.lista = this.lista.sort(
+       // tslint:disable-next-line:only-arrow-functions
        function(obj1, obj2) {
             return obj2.puntos - obj1.puntos;
         }
