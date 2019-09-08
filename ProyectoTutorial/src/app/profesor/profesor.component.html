@@ -1,11 +1,11 @@
 
 <p>profesor works!</p>
 
-<button (click)="Mostrar()">
+<button class="btn btn-primary" (click)="Mostrar()">
   Mostrar lista de alumnos
 </button>
 
-<button (click)="OrdenarPuntos()">
+<button class="btn btn-secondary" (click)="OrdenarPuntos()">
   Ordenar Puntos
 </button>
 <div>
@@ -16,8 +16,8 @@
     <li *ngIf="persona.rol === 'Alumno'">
       <div><span>Nombre: </span> {{ persona.nombre }}</div>
       <div><span>Puntos: </span> {{ persona.puntos }}</div>
-      <button (click)="Incrementar(persona.nombre)">Añadir Punto</button>
-      <button (click)="Eliminar(persona.nombre)">Eliminar</button>
+      <button class="btn btn-success" (click)="Incrementar(persona.nombre)"><span class="glyphicon glyphicon-plus"></span></button>
+      <button class="btn btn-danger" (click)="Eliminar(persona.nombre)"><span class="glyphicon glyphicon-trash"></span></button>
     </li>
   </ul>
 </div>
