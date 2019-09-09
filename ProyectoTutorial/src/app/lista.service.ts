@@ -32,6 +32,7 @@ export class ListaService {
 
   OrdenarPuntos(): Persona[] {
     this.lista = this.lista.sort(
+       // tslint:disable-next-line:only-arrow-functions
        function(obj1, obj2) {
             return obj2.puntos - obj1.puntos;
         }
@@ -42,5 +43,24 @@ export class ListaService {
   PonPersona(persona: Persona): Persona [] {
     this.lista.push(persona);
     return this.lista;
+  }
+
+  Autentificar(nombre: string, pass: string): Persona {
+    let user: Persona[] = [];
+    user = this.lista.filter(persona => persona.nombre === nombre && persona.pass === pass);
+    if (user.length === 0) {
+      return null;
+    } else {
+      return user[0];
+    }
+
+  }
+
+  PonPass(nombre: string, nuevoPass: string): void {
+    this.lista.filter(persona => persona.nombre === nombre)[0].pass = nuevoPass;
+  }
+
+  DamePersona(nombre: string): Persona {
+    return this.lista.filter(persona => persona.nombre === nombre)[0];
   }
 }
